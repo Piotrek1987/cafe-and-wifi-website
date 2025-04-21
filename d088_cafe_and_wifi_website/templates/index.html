@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+        }
+
+        input[type="text"],
+        input[type="url"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .cafe-card {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 300px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cafe-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .cafe-card a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .filter-form {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Café Finder</h1>
+
+    <!-- Link to Add New Cafe -->
+    <a href="{{ url_for('add_cafe') }}" style="display: block; text-align: center; margin: 20px auto; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Add New Cafe</a>
+
+    <div class="filter-form">
+        <h2>Filter Cafes</h2>
+        <form method="GET" action="/">
+            <label for="has_wifi">Has WiFi</label>
+            <input type="checkbox" name="has_wifi">
+
+            <label for="has_sockets">Has Sockets</label>
+            <input type="checkbox" name="has_sockets">
+
+            <label for="can_take_calls">Can Take Calls</label>
+            <input type="checkbox" name="can_take_calls">
+
+            <label for="coffee_price">Coffee Price</label>
+            <input type="text" name="coffee_price" placeholder="e.g., $5">
+
+            <button type="submit">Apply Filters</button>
+        </form>
+    </div>
+
+    <h2>All Cafes</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+        {% for cafe in cafes %}
+            <div class="cafe-card">
+                <h3>{{ cafe.name }}</h3>
+                <img src="{{ cafe.img_url }}" alt="Cafe Image">
+                <p><strong>Location:</strong> {{ cafe.location }}</p>
+                <p><a href="{{ cafe.map_url }}" target="_blank">📍 View on Map</a></p>
+                <p>💺 Seats: {{ cafe.seats or 'Unknown' }}</p>
+                <p>💰 Coffee Price: {{ cafe.coffee_price or 'N/A' }}</p>
+                <p>📶 WiFi: {{ '✅' if cafe.has_wifi else '❌' }}</p>
+                <p>🔌 Sockets: {{ '✅' if cafe.has_sockets else '❌' }}</p>
+                <p>🚻 Toilet: {{ '✅' if cafe.has_toilet else '❌' }}</p>
+                <p>📞 Can Take Calls: {{ '✅' if cafe.can_take_calls else '❌' }}</p>
+                <a href="/delete/{{ cafe.id }}" style="color: red;">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

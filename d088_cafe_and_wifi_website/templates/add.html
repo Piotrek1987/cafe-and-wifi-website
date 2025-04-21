@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Cafe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+        }
+
+        input[type="text"],
+        input[type="url"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .cafe-card {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 300px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cafe-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .cafe-card a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .filter-form {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Cafe</h1>
+
+    <form action="/add" method="POST">
+        <label for="name">Cafe Name:</label>
+        <input type="text" name="name" required><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" name="location" required><br><br>
+
+        <label for="map_url">Map URL:</label>
+        <input type="url" name="map_url" placeholder="e.g., https://goo.gl/maps/xyz" required><br><br>
+
+        <label for="img_url">Image URL:</label>
+        <input type="url" name="img_url" placeholder="e.g., https://example.com/image.jpg" required><br><br>
+
+        <label for="has_wifi">Has WiFi:</label>
+        <input type="checkbox" name="has_wifi"><br><br>
+
+        <label for="has_sockets">Has Sockets:</label>
+        <input type="checkbox" name="has_sockets"><br><br>
+
+        <label for="has_toilet">Has Toilet:</label>
+        <input type="checkbox" name="has_toilet"><br><br>
+
+        <label for="can_take_calls">Can Take Calls:</label>
+        <input type="checkbox" name="can_take_calls"><br><br>
+
+        <label for="seats">Seats:</label>
+        <input type="text" name="seats" placeholder="e.g., 20"><br><br>
+
+        <label for="coffee_price">Coffee Price:</label>
+        <input type="text" name="coffee_price" placeholder="e.g., $4"><br><br>
+
+        <button type="submit">Add Cafe</button>
+    </form>
+
+    <br><br>
+    <a href="/">Back to All Cafes</a>
+</body>
+</html>
